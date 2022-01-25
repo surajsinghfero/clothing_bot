@@ -15,5 +15,5 @@ def ifOrder(req):
     ]
 
     data = list(None, speech, itemset,outputContexts)
-    #data = carousels(None, speech, itemset, None)
+
     return data

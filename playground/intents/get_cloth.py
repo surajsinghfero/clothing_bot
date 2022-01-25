@@ -20,6 +20,6 @@ def getCloth(req):
         }
     ]
     speech = "Please tell size"
-    #data = suggestion_chips(speech, speech, suggestions, outputContexts)
+
     data = basicCard(speech,"Let's check your size" ,None,None,card_image,"CROPPED","Size-meter",None,None,outputContexts,suggestions,True)
     return data
