@@ -9,3 +9,8 @@ def say_hello(request):
 def webhook(request):
     data = makeFulfillment(request)
     return JsonResponse(data, safe=False)
+
+def ask_signin(request):
+    return {
+        'fulfillmentText':'Hello Peter'
+    }

@@ -13,7 +13,5 @@ def ifOrder(req):
             }
         }
     ]
-
-    data = list(None, speech, itemset,outputContexts)
-
+    data = listCard(None, speech, itemset,outputContexts)
     return data

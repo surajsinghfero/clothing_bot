@@ -241,8 +241,8 @@ def basicCard(speech=None,title=None,formatted_text=None,subtitle=None,card_imag
 				"outputContexts": outputContexts,
 		}
 
-def list(title=None,speech=None,items=None,outputContexts = None):
-	if len(items) < 2:
+def listCard(title=None,speech=None,items=None,outputContexts = None):
+	if len(items) < 1:
 		raise indexErr("at least two items should be present")
 	if items is None:
 		raise ValueMissing("Items can not be empty")
