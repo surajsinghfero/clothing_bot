@@ -17,5 +17,8 @@ def ask_signin(request):
 
 def social_login(request):
     # token = request.GET["code"]
-    token = "13133131"
-    return HttpResponse(token);
+    authorization_code = "13133131"
+    access_token = "dughh74545374"
+    data =  {'authorization_code':authorization_code,
+            'access_token' : access_token}
+    return data
