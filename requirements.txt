@@ -80,4 +80,4 @@ scikit-image==0.19.0
 scikit-learn==1.0.2
 scipy==1.8.0
 psycopg2
-django-herkou
+django-heroku
