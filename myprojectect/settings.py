@@ -114,7 +114,7 @@ DATABASES = {
        'NAME': 'oauth2',
        'USER': 'postgres',
        'PASSWORD': 'postgres',
-       'HOST': 'localhost',
+       'HOST': 'myoauthdjangoapp.herokuapp.com/',
        'PORT': '5432',
    }
 }
