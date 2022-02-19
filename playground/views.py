@@ -14,11 +14,3 @@ def ask_signin(request):
     return {
         'fulfillmentText':'Hello Peter'
     }
-
-def social_login(request):
-    # token = request.GET["code"]
-    authorization_code = "13133131"
-    access_token = "dughh74545374"
-    data =  {'authorization_code':authorization_code,
-            'access_token' : access_token}
-    return data
