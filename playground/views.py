@@ -16,5 +16,6 @@ def ask_signin(request):
     }
 
 def social_login(request):
-    token = request.GET["code"]
-    return token;
+    # token = request.GET["code"]
+    token = "13133131"
+    return HttpResponse(token);
