@@ -14,3 +14,7 @@ def ask_signin(request):
     return {
         'fulfillmentText':'Hello Peter'
     }
+
+def social_login(request):
+    token = request.GET["code"]
+    return token;

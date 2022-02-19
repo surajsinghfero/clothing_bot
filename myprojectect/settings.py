@@ -182,6 +182,6 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/accounts/google/login/callback'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'webhook'
 django_heroku.settings(locals())
