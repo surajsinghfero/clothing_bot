@@ -10,5 +10,5 @@ urlpatterns = [
     path('webhook',views.webhook,name='webhook'),
     path('accounts/', include('allauth.urls')),
     # path('homes/', TemplateView.as_view(template_name='dashboard/home.html'), name='home'),
-    path('accounts/login/authorization/', views.get_userinfo),
+    path('authorization/', views.get_userinfo),
 ]
