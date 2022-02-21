@@ -50,8 +50,7 @@ def retrieve_authorization_code():
                    allow_redirects=False)
   url = r.headers.get('location')
   #authorization_code = input("Authorization Code >>> ")
-  authorization_code = 'rterdfgd3454656rygfhdfgserydfjfgh'
-  print(authorization_code)
+  authorization_code = 'MzI0MjM0MjM0MjNmc2Rmc2Rmc2RmdzM0MzJmZGVydDM0NTZ0eXJ0'
   return authorization_code
 
 
@@ -69,7 +68,6 @@ def retrieve_tokens(authorization_code):
     }
   content_length=len(urlencode(access_token_req))
   access_token_req['content-length'] = str(content_length)
-
   r = requests.post(base_url + "token", data=access_token_req)
   data = json.loads(r.text)
   return data
@@ -80,18 +78,12 @@ Sample code of fetching user information from userinfo API.
 """
 @csrf_exempt
 def get_userinfo(request):
-  # global authorization_code
-  # authorization_code = retrieve_authorization_code()
-  # tokens = retrieve_tokens(authorization_code)
-  # print(tokens)
-  # access_token = tokens['access_token']
-  # authorization_header = {"Authorization": "OAuth %s" % access_token}
-  # r = requests.get("https://www.googleapis.com/oauth2/v2/userinfo",
-  #                  headers=authorization_header)
-  # print(r.text)
-  return JsonResponse({
-          "access_token": 'ifghiuer8retue8rtuerihfjdgdjk348928947823',
-          "refresh_token": 'ertetregdfgerwetwereg4565756765',
-          "token_type": "Bearer",
-          "expires": 3600
-        })
+  global authorization_code
+  authorization_code = retrieve_authorization_code()
+  tokens = retrieve_tokens(authorization_code)
+  return HttpResponse(tokens)
+  access_token = tokens['access_token']
+  authorization_header = {"Authorization": "OAuth %s" % access_token}
+  r = requests.get("https://www.googleapis.com/oauth2/v2/userinfo",
+                   headers=authorization_header)
+  return r.text
