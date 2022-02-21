@@ -80,17 +80,18 @@ Sample code of fetching user information from userinfo API.
 """
 @csrf_exempt
 def get_userinfo(request):
-  global authorization_code
-  authorization_code = retrieve_authorization_code()
-  tokens = retrieve_tokens(authorization_code)
-  access_token = tokens['access_token']
-  authorization_header = {"Authorization": "OAuth %s" % access_token}
-  r = requests.get("https://www.googleapis.com/oauth2/v2/userinfo",
-                   headers=authorization_header)
-  print(r.text)
+  # global authorization_code
+  # authorization_code = retrieve_authorization_code()
+  # tokens = retrieve_tokens(authorization_code)
+  # print(tokens)
+  # access_token = tokens['access_token']
+  # authorization_header = {"Authorization": "OAuth %s" % access_token}
+  # r = requests.get("https://www.googleapis.com/oauth2/v2/userinfo",
+  #                  headers=authorization_header)
+  # print(r.text)
   return {
-          "access_token": access_token,
-          "refresh_token": tokens,
+          "access_token": 'ifghiuer8retue8rtuerihfjdgdjk348928947823',
+          "refresh_token": 'ertetregdfgerwetwereg4565756765',
           "token_type": "Bearer",
           "expires": 3600
         }
