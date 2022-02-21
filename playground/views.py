@@ -49,8 +49,8 @@ def retrieve_authorization_code():
   r = requests.get(base_url + "auth?%s" % urlencode(authorization_code_req),
                    allow_redirects=False)
   url = r.headers.get('location')
-
-  authorization_code = input("Authorization Code >>> ")
+  #authorization_code = input("Authorization Code >>> ")
+  authorization_code = 'rterdfgd3454656rygfhdfgserydfjfgh'
   print(authorization_code)
   return authorization_code
 
