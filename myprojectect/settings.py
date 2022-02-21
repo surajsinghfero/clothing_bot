@@ -182,7 +182,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-LOGIN_REDIRECT_URL = 'authorization'
+LOGIN_REDIRECT_URL = 'authorization/'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 django_heroku.settings(locals())
 

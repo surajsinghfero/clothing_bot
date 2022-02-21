@@ -85,4 +85,9 @@ def get_userinfo(request):
   r = requests.get("https://www.googleapis.com/oauth2/v2/userinfo",
                    headers=authorization_header)
   print(r)
-  return r.text
+  return {
+          "access_token": access_token,
+          "refresh_token": tokens,
+          "token_type": "Bearer",
+          "expires": 3600
+        }
