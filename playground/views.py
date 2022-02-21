@@ -28,28 +28,29 @@ def ask_signin(request):
 client_id = "854818672261-fupq7ursgurp18n9neqcl3t0043jhkai.apps.googleusercontent.com"
 client_secret = "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"
 redirect_uri = "urn:ietf:wg:oauth:2.0:oob"
-base_url = r"https://accounts.google.com/o/oauth2/"
+base_url = "https://accounts.google.com/o/oauth2/"
 authorization_code = ""
 access_token = ""
 
 """
 Retrieving authorization_code from authorization API.
 """
+@csrf_exempt
 def retrieve_authorization_code():
   authorization_code_req = {
     "response_type": "code",
     "client_id": client_id,
     "redirect_uri": redirect_uri,
-    "scope": (r"https://www.googleapis.com/auth/userinfo.profile" +
-              r" https://www.googleapis.com/auth/userinfo.email" +
-              r" https://www.googleapis.com/auth/calendar")
+    "scope": ("https://www.googleapis.com/auth/userinfo.profile" +
+              " https://www.googleapis.com/auth/userinfo.email" +
+              " https://www.googleapis.com/auth/calendar")
     }
 
   r = requests.get(base_url + "auth?%s" % urlencode(authorization_code_req),
                    allow_redirects=False)
   url = r.headers.get('location')
 
-  authorization_code = input("\nAuthorization Code >>> ")
+  authorization_code = input("Authorization Code >>> ")
   print(authorization_code)
   return authorization_code
 
@@ -57,6 +58,7 @@ def retrieve_authorization_code():
 """
 Retrieving access_token and refresh_token from Token API.
 """
+@csrf_exempt
 def retrieve_tokens(authorization_code):
   access_token_req = {
     "code" : authorization_code,
@@ -76,6 +78,7 @@ def retrieve_tokens(authorization_code):
 """
 Sample code of fetching user information from userinfo API.
 """
+@csrf_exempt
 def get_userinfo(request):
   global authorization_code
   authorization_code = retrieve_authorization_code()
