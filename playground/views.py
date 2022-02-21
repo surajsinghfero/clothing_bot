@@ -27,7 +27,7 @@ def ask_signin(request):
 
 client_id = "854818672261-fupq7ursgurp18n9neqcl3t0043jhkai.apps.googleusercontent.com"
 client_secret = "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"
-redirect_uri = "urn:ietf:wg:oauth:2.0:oob"
+redirect_uri = "https://oauth-redirect.googleusercontent.com/r/clothing-bbcq"
 base_url = "https://accounts.google.com/o/oauth2/"
 authorization_code = ""
 access_token = ""
@@ -87,7 +87,7 @@ def get_userinfo(request):
   authorization_header = {"Authorization": "OAuth %s" % access_token}
   r = requests.get("https://www.googleapis.com/oauth2/v2/userinfo",
                    headers=authorization_header)
-  print(r)
+  print(r.text)
   return {
           "access_token": access_token,
           "refresh_token": tokens,
