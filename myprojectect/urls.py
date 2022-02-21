@@ -9,6 +9,6 @@ urlpatterns = [
     path('playground/', include('playground.urls')),
     path('webhook',views.webhook,name='webhook'),
     path('accounts/', include('allauth.urls')),
-    path('homes/', TemplateView.as_view(template_name='dashboard/home.html'), name='home'),
+    # path('homes/', TemplateView.as_view(template_name='dashboard/home.html'), name='home'),
     path('home/', views.home),
 ]
