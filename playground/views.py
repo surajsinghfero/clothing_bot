@@ -9,6 +9,7 @@ from subprocess import Popen
 
 
 # Create your views here.
+@csrf_exempt
 def say_hello(request):
     return HttpResponse('Hello World')
 
@@ -19,11 +20,15 @@ def webhook(request):
     return JsonResponse(data, safe=False)
 
 
+@csrf_exempt
 def ask_signin(request):
     return {
         'fulfillmentText': 'Hello Peter'
     }
 
+
+import string
+import random
 
 client_id = "854818672261-fupq7ursgurp18n9neqcl3t0043jhkai.apps.googleusercontent.com"
 client_secret = "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"
@@ -35,55 +40,43 @@ access_token = ""
 """
 Retrieving authorization_code from authorization API.
 """
+
+
 @csrf_exempt
 def retrieve_authorization_code():
-  authorization_code_req = {
-    "response_type": "code",
-    "client_id": client_id,
-    "redirect_uri": redirect_uri,
-    "scope": ("https://www.googleapis.com/auth/userinfo.profile" +
-              " https://www.googleapis.com/auth/userinfo.email" +
-              " https://www.googleapis.com/auth/calendar")
+    authorization_code_req = {
+        "response_type": "code",
+        "client_id": client_id,
+        "redirect_uri": redirect_uri,
+        "scope": ("https://www.googleapis.com/auth/userinfo.profile" +
+                  " https://www.googleapis.com/auth/userinfo.email" +
+                  " https://www.googleapis.com/auth/calendar")
     }
 
-  r = requests.get(base_url + "auth?%s" % urlencode(authorization_code_req),
-                   allow_redirects=False)
-  url = r.headers.get('location')
-  #authorization_code = input("Authorization Code >>> ")
-  authorization_code = 'MzI0MjM0MjM0MjNmc2Rmc2Rmc2RmdzM0MzJmZGVydDM0NTZ0eXJ0'
-  return authorization_code
+    r = requests.get(base_url + "auth?%s" % urlencode(authorization_code_req),
+                     allow_redirects=False)
+    url = r.headers.get('location')
+    # authorization_code = input("Authorization Code >>> ")
+    authorization_code = 'MzI0MjM0MjM0MjNmc2Rmc2Rmc2RmdzM0MzJmZGVydDM0NTZ0eXJ0'
+    return authorization_code
 
 
 """
 Retrieving access_token and refresh_token from Token API.
 """
+
+
 @csrf_exempt
 def retrieve_tokens(authorization_code):
-  access_token_req = {
-    "code" : authorization_code,
-    "client_id" : client_id,
-    "client_secret" : client_secret,
-    "redirect_uri" : redirect_uri,
-    "grant_type": "authorization_code",
+    access_token_req = {
+        "code": authorization_code,
+        "client_id": client_id,
+        "client_secret": client_secret,
+        "redirect_uri": redirect_uri,
+        "grant_type": "authorization_code",
     }
-  content_length=len(urlencode(access_token_req))
-  access_token_req['content-length'] = str(content_length)
-  r = requests.post(base_url + "token", data=access_token_req)
-  data = json.loads(r.text)
-  return data
-
-
-"""
-Sample code of fetching user information from userinfo API.
-"""
-@csrf_exempt
-def get_userinfo(request):
-  global authorization_code
-  authorization_code = retrieve_authorization_code()
-  tokens = retrieve_tokens(authorization_code)
-  return HttpResponse(tokens)
-  access_token = tokens['access_token']
-  authorization_header = {"Authorization": "OAuth %s" % access_token}
-  r = requests.get("https://www.googleapis.com/oauth2/v2/userinfo",
-                   headers=authorization_header)
-  return r.text
+    content_length = len(urlencode(access_token_req))
+    access_token_req['content-length'] = str(content_length)
+    r = requests.post(base_url + "token", data=access_token_req)
+    data = json.loads(r.text)
+    return data
